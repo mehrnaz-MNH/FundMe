@@ -41,21 +41,42 @@ contract FundMe {
 
     function makeDonation(uint256 _id) public payable{
 
+        uint256 amount = msg.value;
+        FundRise storage fundrise = fundRises[_id];
+        fundrise.donators.push(msg.sender);
+        fundrise.donations.push(amount);
 
 
+        (bool sent , ) = payable(fundrise.owner).call{value:amount}("");
+
+        if(sent){
+           fundrise.amountCollected = fundrise.amountCollected + amount;
+       }
+    }
+
+
+    function getDonators(uint256 _id) view public returns (address[] memory , uint256[] memory){
+
+         return (fundRises[_id].donators , fundRises[_id].donations);
 
 
     }
 
-    function getDonators(){
+    function getAllFundRises() view public returns (FundRise[] memory){
 
+        FundRise[] memory allFundRise = new FundRise[](numOfFundRises);
+
+
+        for(uint i = 0 ; i < numOfFundRises ; i++){
+
+            FundRise storage item = fundRises[i];
+
+            allFundRise[i] = item;
+
+
+
+        }
 
     }
-
-    function getAllFundRises(){
-
-
-    }
-
 
 }
