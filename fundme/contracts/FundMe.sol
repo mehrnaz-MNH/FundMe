@@ -12,6 +12,7 @@ contract FundMe {
         uint256 deadline ;
         uint256 amountCollected;
         string image ;
+        string uni;
         address[] donators;
         uint256[] donations;
 
@@ -22,7 +23,7 @@ contract FundMe {
     uint256 public numOfFundRises =  0 ;
 
     // what functionality our contract has ?
-    function createFundRise(address _owner, string memory _title , string memory _description , uint256 _target , uint256 _dealine , string memory _image ) public returns (uint256) {
+    function createFundRise(address _owner, string memory _title , string memory _uni, string memory _description , uint256 _target , uint256 _dealine , string memory _image ) public returns (uint256) {
        FundRise storage fundrise = fundRises[numOfFundRises];
        // is all good ?
        require(fundrise.deadline < block.timestamp , "The deadline should be a date in future");
@@ -30,6 +31,7 @@ contract FundMe {
        fundrise.title = _title;
        fundrise.description = _description;
        fundrise.target = _target;
+       fundrise.uni = _uni ;
        fundrise.amountCollected = 0;
        fundrise.deadline = _dealine;
        fundrise.image = _image;
