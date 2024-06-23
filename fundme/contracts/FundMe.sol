@@ -80,6 +80,8 @@ contract FundMe {
 
         }
 
+        return allFundRise;
+
     }
 
 }
