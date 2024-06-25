@@ -7,11 +7,13 @@ export const navlinks = [
         name: 'dashboard',
         imgUrl: dashboard,
         link: '/',
+        disabled: false,
     },
     {
-        name: 'campaign',
+        name: 'fundRise',
         imgUrl: createCampaign,
-        link: '/create-campaign',
+        link: '/create-fundrise',
+        disabled: false,
     },
     {
         name: 'payment',
@@ -29,6 +31,7 @@ export const navlinks = [
         name: 'profile',
         imgUrl: profile,
         link: '/profile',
+        disabled: false,
     },
     {
         name: 'logout',
